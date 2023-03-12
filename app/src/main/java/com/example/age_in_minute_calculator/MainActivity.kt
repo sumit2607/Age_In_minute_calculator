@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.age_in_minute_calculator.databinding.ActivityMainBinding
+import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,11 +30,13 @@ class MainActivity : AppCompatActivity() {
     private fun getTextFromCalender() {
 
         with(binding) {
-            calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-                curDate = dayOfMonth.toString() + month.toString() + year.toString()
-                Log.d("TAG", "onCreate: " + curDate)
-                textView2.text = curDate
+            val day: Int = calendarView.dayOfMonth
+            val month: Int = calendarView.month + 1
+            val year: Int = calendarView.year
+
+//            curDate = dayOfMonth.toString() + month.toString() + year.toString()
+//                Log.d("TAG", "onCreate: " + curDate)
+//                textView2.text = curDate
             }
         }
     }
-}
