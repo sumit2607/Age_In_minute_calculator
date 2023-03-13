@@ -50,8 +50,9 @@ class MainActivity : AppCompatActivity() {
 
                 val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
 
-                val FinalDate =  currentDAteInMin - currentDate
+             //   val FinalDate =  currentDAteInMin - currentDate
 
+                textView2.text = curDate
 
 
 
