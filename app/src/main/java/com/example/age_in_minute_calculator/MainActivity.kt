@@ -6,10 +6,9 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.age_in_minute_calculator.databinding.ActivityMainBinding
-import java.text.DateFormat
-import java.text.ParseException
+import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,21 +35,25 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             calendarView.setOnDateChangedListener{ _, year, month, dayOfMonth ->
                 curDate = dayOfMonth.toString() +"-"+ (month+1) +"-"+ year.toString()
-                textView2.text = curDate
+
+                Log.e(
+                    "TEST1",
+                    (curDate)
+                )
+                val currentTime = System.currentTimeMillis()
+
+                val sdf = SimpleDateFormat("dd/MM/yyyy" , Locale.ENGLISH)
+
+                val theDate = sdf.parse(curDate)
+
+                val   currentDAteInMin =   theDate.time / 6000
+
+                val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
+
+                val FinalDate =  currentDAteInMin - currentDate
 
 
-                try {
-                    val df: DateFormat = SimpleDateFormat("dd.MM.yyyy")
-                    val date1: Date = Date()
-                    val date2: Date = df.parse(curDate)
-                    val diff: Long = date2.getTime() - date1.getTime()
-                    Log.e(
-                        "TEST",
-                        (date1.getTime() + date2.getTime()).toString() + " - " + diff
-                    )
-                } catch (e: ParseException) {
-                    Log.e("TEST", "Exception", e)
-                }
+
 
             }
         }
